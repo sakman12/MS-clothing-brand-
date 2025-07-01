@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MS Clothing</title>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      color: #333;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #1a1a2e;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    .search-bar {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .search-bar input {
+      padding: 0.5rem;
+      width: 60%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .product-card {
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      width: 250px;
+      margin: 1rem;
+      text-align: center;
+      padding: 1rem;
+    }
+    .product-card img {
+      max-width: 100%;
+      border-radius: 5px;
+    }
+    .buy-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    footer {
+      background-color: #1a1a2e;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MS Clothing</h1>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search products..." />
+    </div>
+  </header>
+  <main>
+    <div class="product-grid" id="productGrid"></div>
+  </main>
+  <footer>
+    &copy; 2025 MS Clothing Brand | Follow us on Insta: @ms_clothingbrand27
+  </footer>
+
+  <script>
+    const products = [
+      { name: "Zara T-Shirt", price: 895, image: "https://via.placeholder.com/250", link: "#" },
+      { name: "Balenciaga T-Shirt", price: 517, image: "https://via.placeholder.com/250", link: "#" },
+      { name: "Naruto Tee", price: 356, image: "https://via.placeholder.com/250", link: "#" },
+      { name: "Anime Design", price: 549, image: "https://via.placeholder.com/250", link: "#" }
+    ];
+
+    const productGrid = document.getElementById("productGrid");
+    const searchInput = document.getElementById("searchInput");
+
+    function displayProducts(items) {
+      productGrid.innerHTML = "";
+      items.forEach((product) => {
+        productGrid.innerHTML += `
+          <div class="product-card">
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>₹${product.price}</p>
+            <a href="${product.link}"><button class="buy-btn">Buy Now</button></a>
+          </div>
+        `;
+      });
+    }
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.toLowerCase();
+      const filtered = products.filter((p) =>
+        p.name.toLowerCase().includes(query)
+      );
+      displayProducts(filtered);
+    });
+
+    // initial display
+    displayProducts(products);
+  </script>
+</body>
+</html>
+
+
+
